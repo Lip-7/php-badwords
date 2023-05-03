@@ -1,5 +1,9 @@
 <?php
+$wallText = "ERROR";
+$wallTextCensored = "ERROR";
+
 if ((!empty(trim($_POST['badWord']))) && (!empty(trim($_POST['wallText'])))){
+    $error = false;
     $badWord = trim($_POST['badWord']);
     $wallText = trim($_POST['wallText']);
     $wallTextCensored = str_replace($badWord, '***', $wallText);
@@ -7,11 +11,16 @@ if ((!empty(trim($_POST['badWord']))) && (!empty(trim($_POST['wallText'])))){
     $error = true;
 }
 $error = false;
-if ($error) {
-    $badWord = "ERROR";
-    $wallText = "ERROR";
+if ((empty(trim($_POST['badWord']))) && (empty(trim($_POST['wallText'])))){
+    $wallText = "The 'bad Word' and the Text are missing";
+    $wallTextCensored = "The 'bad Word' and the Text are missing";
+} elseif ((empty(trim($_POST['badWord'])))){
+    $wallText = "The 'bad Word' is missing";
+    $wallTextCensored = "The 'bad Word' is missing";
+} elseif ((empty(trim($_POST['wallText'])))){
+    $wallText = "The Text is missing";
+    $wallTextCensored = "The Text is missing";
 }
-
 ?>
 
 
@@ -37,16 +46,14 @@ if ($error) {
 <body>
     <div class="container mx-auto pt-5">
         <h2 class="text-white text-3xl">Below there is the original text you submit: <!-- <?php echo $badWord ?> --></h2>
-        <div class="initalWallText mx-auto mt-10" id="text">
+        <div class="initalWallText mx-auto mt-10 overflow-y-auto" id="text">
             <p><?php echo $wallText?></p>
         </div>
         <h2 class="text-white text-3xl mt-20">Below there is the text you submit but censored: <!-- <?php echo $badWord ?> --></h2>
-        <div class="initalWallText mx-auto mt-10" id="text">
+        <div class="initalWallText mx-auto mt-10 overflow-y-auto" id="text">
             <p><?php echo $wallTextCensored?></p>
         </div>
     </div>
-    <script src="./js/utility.js"></script>
-    <script src="./js/script.js"></script>
 </body>
 
 </html>
