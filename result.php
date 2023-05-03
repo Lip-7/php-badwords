@@ -2,6 +2,7 @@
 if ((!empty(trim($_POST['badWord']))) && (!empty(trim($_POST['wallText'])))){
     $badWord = trim($_POST['badWord']);
     $wallText = trim($_POST['wallText']);
+    $wallTextCensored = str_replace($badWord, '***', $wallText);
 } else {
     $error = true;
 }
@@ -34,8 +35,15 @@ if ($error) {
 </head>
 
 <body>
-    <div class="wrap">
-        <h1 class="text-white">Ciao <?php echo $badWord ?></h1>
+    <div class="container mx-auto pt-5">
+        <h2 class="text-white text-3xl">Below there is the original text you submit: <!-- <?php echo $badWord ?> --></h2>
+        <div class="initalWallText mx-auto mt-10" id="text">
+            <p><?php echo $wallText?></p>
+        </div>
+        <h2 class="text-white text-3xl mt-20">Below there is the text you submit but censored: <!-- <?php echo $badWord ?> --></h2>
+        <div class="initalWallText mx-auto mt-10" id="text">
+            <p><?php echo $wallTextCensored?></p>
+        </div>
     </div>
     <script src="./js/utility.js"></script>
     <script src="./js/script.js"></script>
