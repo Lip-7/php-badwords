@@ -45,11 +45,11 @@ if ((empty(trim($_POST['badWord']))) && (empty(trim($_POST['wallText'])))){
 
 <body>
     <div class="container mx-auto pt-5">
-        <h2 class="text-white text-3xl">Below there is the original text you submit: <!-- <?php echo $badWord ?> --></h2>
+        <h2 class="text-white text-3xl">Below there is the original text you submit (Length: <?php echo strlen($wallText) ?>): <!-- <?php echo $badWord ?> --></h2>
         <div class="initalWallText mx-auto mt-10 overflow-y-auto" id="text">
             <p><?php echo $wallText?></p>
         </div>
-        <h2 class="text-white text-3xl mt-20">Below there is the text you submit but censored: <!-- <?php echo $badWord ?> --></h2>
+        <h2 class="text-white text-3xl mt-20">Below there is the text you submit but censored (Length: <?php echo strlen($wallTextCensored) ?>): <!-- <?php echo $badWord ?> --></h2>
         <div class="initalWallText mx-auto mt-10 overflow-y-auto" id="text">
             <p><?php echo $wallTextCensored?></p>
         </div>
